@@ -1,0 +1,37 @@
+#FEDORA 41 & UP, Intel recent (using i7-1280p and i5-10310U)
+
+#set up rpm fusion's free & nonfree repos
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+
+#AppStream metadata
+sudo dnf update @core
+
+sudo dnf install rpmfusion-\*-appstream-data
+
+#codecs from rpm fusion's 'how to'
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+
+sudo dnf install @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+
+sudo dnf install intel-media-driver
+
+#install PowerTOP & auto-run
+sudo dnf install powertop
+
+sudo systemctl enable --now powertop.service
+
+
+
+#useful tool for GPU monitoring
+#sudo dnf install intel-gpu-tools
+#sudo intel_gpu_top
+
+
+
+
+
+
+#THINGS TO ADD, DOT FILE FOR changes in looks, sound effects not playing when audio buttons, turning on laptop. Maybe auto wallpaper, apps?
+
